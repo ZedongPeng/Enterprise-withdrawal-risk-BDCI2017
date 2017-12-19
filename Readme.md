@@ -2,7 +2,7 @@
 
 队伍名称：DataNTL(Data Never Tells a Lie)
 
-队伍组成：Evander  HeatherCX 邹雨恒 张奋涛 李莱  
+队伍组成：Evander  HeatherCX 邹雨恒 张奋涛 李蓁  
 
 # 赛题回顾
 
