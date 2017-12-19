@@ -18,41 +18,44 @@
 
 # 特征工程
 
-##1entbase.csv
+## 1entbase.csv
 
 1. RGYEAR 成立年度GAP
 2. HY 行业大类 one-hot编码
 3. ETYPE 企业类型 one-hot编码
 4. 注册资本和各种身份指标 'ZCZB', 'MPNUM', 'INUM', 'ENUM','FINZB', 'FSTINUM', 'TZINUM'
-5. 注册资本onehot编码
-6. FINZB/ZCZB   FINZB+ZCZB
-7. ZCZB用KMeans聚类
-8. 省份类别
-9. PROV独热编码
-10. EID数值
+5. 身份指标的二次处理：INUM-ENUM、FSTINUM-TZINUM、FSTINUM+TZINUM、ENUM+TZINUM、ENUM-TZINUM、FSTINUM-MPNUM、MPNUM+ENUM+FSTINUM+TZINU、log_ZCZB、log_MPNUM、log_INUM
+6. 注册资本onehot编码
+7. FINZB/ZCZB   FINZB+ZCZB
+8. ZCZB用KMeans聚类
+9. 省份类别
+10. PROV独热编码
+11. EID数值
 
 ## 2alter.csv
 
 1. 企业变更次数统计
 2. 变更事项代码one-hot编码
-3. 2013-2015年变更次数的统计/2013-2015年变更次数趋势
-4. ALTAF/ALTBE比值
-5. 美元、港币、人民币分类
-6. 最早和最后一次更变的时间
-7. alter_year - rgyear
-8. ALTAF-ALTBE
+3. 变更时间月度GAP 最小值、最大值、平均值
+4. 2013-2015年变更次数的统计
+5. 2013-2015年变更次数趋势
+6. ALTAF/ALTBE比值
+7. 美元、港币、人民币分类
+8. 最早和最后一次更变的时间、平均变更时间
+9. alter_year - rgyear变更年份间隔
+10. ALTAF-ALTBE的最小值、最大值、求和
 
 ## 3branch.csv
 
 1. 分支企业数量统计
 2. 分支机构在省内的数量和比例
-3. 分支成立年度到2017的GAP
-4. 分支成立年度到关停时的GAP
+3. 分支成立年度到2017的GAP 最小值、最大值、均值
+4. 分支成立年度到关停时的GAP 最小值、最大值、均值
 5. 分支survive的count和rate
 6. 分支关停的count和rate
 7. 分支成立趋势
-8. b_reyear-rgyear
-9. branch b_endyear-rgyear
+8. b_reyear-rgyear 最小值、最大值
+9. b_endyear-rgyear 最小值、最大值
 
 ## 4invest.csv
 
@@ -63,29 +66,30 @@
 5. 持股总数
 6. 平均持股比例
 7. 被投资企业类型
-8. BTYEAR - rgyear
+8. BTYEAR - rgyear 最大值、最小值
 
-##5right.csv
+## 5right.csv
 
 1. 企业专利count
 2. 权利类型ONE-HOT编码
-3. 申请日期GAP
-4. 权利申请到赋予的时间GAP
+3. 申请日期GAP 最大值、最小值、平均值
+4. 权利申请到赋予的时间GAP 最大值、最小值、平均值
 5. right_typecode数字
 6. right_typecode不同类型权利个数
 7. right_date最早和最后时间
-8. right_year - rgyear
+8. right_year - rgyear 最大值、最小值
 
 ## 6project.csv
 
 1. project_count项目数量统计
 2. project_timegap
 3. DJDATE_2013/2014/2015
-4. ifhome-count//ifhome_ratio
-5. last year
+4. 省内的数量与比例
+5. 年份最小间隔
 6. 每年事件数发生趋势
 7. TYPECODE(最小&最大)
-8. 同项目的eid是否继续经营的和sametype_target_sum
+8. DJDATE-rgyear
+9. 同项目的eid是否继续经营的和sametype_target_sum（删去）
 
 ## 7lawsuit.csv
 
@@ -93,34 +97,38 @@
 2. lawamount
 3. lawamount-zczb
 4. 事件数
-5. 每年被执行金额//趋势//year
-6. TYPECODE
+5. 每年被执行金额
+6. 每年被执行金额趋势
+7. 年份间隔
+8. TYPECODE
 
 ## 8breakfaith.csv
 
 1. 失信最早年份
 2. SXENDDATE
 3. 每年发生次数
-4. month-gap
-5. TYPECODE
-6. breakfaith - rgyear
+4. 每年发生次数趋势
+5. month-gap
+6. TYPECODE
+7. breakfaith - rgyear
+8. 间隔年份最小值、最大值
+
 
 ## 9recruit.csv
 
-1. recruit_RECRNUM_count 招聘总次数
-2. recruit_RECRNUM_sum 招聘职位总数[重要]
-3. recurt_info_ration平均每次招聘的职位数量[重要]
-4. WZCODE_ZP01~ZP03:招聘WZCODE的one-hot
-5. month_gap:最近招聘的月度gap
-6. PNUM
-7. SUM_PNUM
-8. recruit - rgyear
+1. recuit_year 招聘年份间隔最大值
+2. WZCODE 招聘代码 one-hot
+3. recuit_count 招聘次数
+4. r_month_gap 招聘年份间隔最大值
+5. PNUM 招聘数量均值
+7. SUM_PNUM 招聘人数总量
+8. recruit - rgyear的最大值、最小值
 
 ## 10qualification.csv
 
 1. addtype
 2. 资质数量
-3.   
+3. qua_month_gap 资质申请间隔时间均值 
 
 # 模型设计和融合
 
