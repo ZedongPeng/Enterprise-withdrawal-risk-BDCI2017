@@ -1,36 +1,36 @@
-# 队伍组成
+## 队伍组成
 
 队伍名称：DataNTL(Data Never Tells a Lie)
 
 队伍组成：Evander  HeatherCX 邹雨恒 张奋涛 李蓁  
 
-# 赛题回顾
+## 赛题回顾
 
 [本赛题](http://www.datafountain.cn/#/competitions/271/intro)以企业为中心，围绕企业主体在多方面留下的行为足迹信息构建训练数据集，以企业在未来两年内是否因经营不善退出市场作为目标变量进行预测。参赛者需要利用训练数据集中企业信息数据，构建算法模型，并利用该算法模型对验证数据集中企业，给出预测结果以及风险概率值。预测结果以AUC值作为主要评估标准，在AUC值（保留到小数点后3位数字）相同的情况下，则以F1-score（命中率及覆盖率）进行辅助评估。
 
 数据集下载：[下载链接](https://pan.baidu.com/s/1pLzbwfx)（BDCI2017-liangzi.rar为初赛数据，BDCI2017-liangzi-Semi.zip为复赛数据，初赛数据与复赛数据中有一些数据格式不一致，详情见***********.md）
 
-# 解决方案概述
+## 解决方案概述
 
 本赛题初赛给出了***个企业，企业基本信息数据（1entbase.csv）、变更数据（2alter.csv）、分支机构数据（3branch.csv）、投资数据（4invest.csv）、权利数据（5right.csv）、项目数据（6project.csv）、被执行数据（7lawsuit.csv）、失信数据（8breakfaith.csv）、招聘数据（9recruit.csv）。我们依照每个表的数据特征和信息，在每一个表内构建特征，然后利用xgboost、gbdt、dart等模型对数据进行训练和预测。
 
 复赛中新增了数据：企业资质10qualification.csv
 
-# 特征工程
+## 特征工程
 
-## 1entbase.csv
+- **1entbase.csv**
 
-1. RGYEAR 成立年度GAP
-2. HY 行业大类 one-hot编码
-3. ETYPE 企业类型 one-hot编码
-4. 注册资本和各种身份指标 'ZCZB', 'MPNUM', 'INUM', 'ENUM','FINZB', 'FSTINUM', 'TZINUM'
-5. 身份指标的二次处理：INUM-ENUM、FSTINUM-TZINUM、FSTINUM+TZINUM、ENUM+TZINUM、ENUM-TZINUM、FSTINUM-MPNUM、MPNUM+ENUM+FSTINUM+TZINU、log_ZCZB、log_MPNUM、log_INUM
-6. 注册资本onehot编码
-7. FINZB/ZCZB   FINZB+ZCZB
-8. ZCZB用KMeans聚类
-9. 省份类别
-10. PROV独热编码
-11. EID数值
+  - RGYEAR 成立年度GAP
+  - HY 行业大类 one-hot编码
+  - ETYPE 企业类型 one-hot编码
+  - 注册资本和各种身份指标 'ZCZB', 'MPNUM', 'INUM', 'ENUM','FINZB', 'FSTINUM', 'TZINUM'
+  - 身份指标的二次处理：INUM-ENUM、FSTINUM-TZINUM、FSTINUM+TZINUM、ENUM+TZINUM、ENUM-TZINUM、FSTINUM-MPNUM、MPNUM+ENUM+FSTINUM+TZINU、      log_ZCZB、log_MPNUM、log_INUM
+  - 注册资本onehot编码
+  - FINZB/ZCZB   FINZB+ZCZB
+  - ZCZB用KMeans聚类
+  - 省份类别
+  - PROV独热编码
+  - EID数值
 
 ## 2alter.csv
 
