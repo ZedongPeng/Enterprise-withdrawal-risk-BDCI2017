@@ -2,7 +2,7 @@
 
 队伍名称：DataNTL(Data Never Tells a Lie)
 
-队伍组成：Evander  [HeatherCX](https://github.com/HeatherCX) 邹雨恒 张奋涛 [李蓁](https://github.com/lzpeter)
+队伍组成：[Evander](https://github.com/ZedongPeng) [HeatherCX](https://github.com/HeatherCX) 邹雨恒 张奋涛 [李蓁](https://github.com/lzpeter)
 
 ## 赛题回顾
 
